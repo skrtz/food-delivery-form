@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, FieldErrors } from 'react-hook-form'
 import { getRenderCount } from '../utils/getRenderCount';
 
 type FoodDeliveryFormType = {
@@ -24,8 +24,12 @@ export const FoodDeliveryForm = () => {
         console.log('form data: ', formData);
     }
 
+    const onError = (err: FieldErrors) => {
+        console.log('error: ', err);
+    }
+
     return (
-        <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+        <form autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit, onError)}>
             <RenderCount />
             <div className="row mb-2">
                 <div className="col">
@@ -46,7 +50,20 @@ export const FoodDeliveryForm = () => {
                             type="text"
                             className="form-control"
                             placeholder="Mobile"
-                            {...register('mobile')}
+                            {...register('mobile', {
+                                required: {
+                                    value: true,
+                                    message: 'u suck'
+                                },
+                                minLength: {
+                                    value: 10,
+                                    message: 'u suck'
+                                },
+                                maxLength: {
+                                    value: 10,
+                                    message: 'u suck'
+                                }
+                            })}
                         />
                         <label>Mobile</label>
                     </div>
@@ -59,7 +76,9 @@ export const FoodDeliveryForm = () => {
                             type="text"
                             className="form-control"
                             placeholder="Customer Name"
-                            {...register('customerName')}
+                            {...register('customerName', {
+                                required: true
+                            })}
                         />
                         <label>Customer Name</label>
                     </div>
@@ -70,7 +89,12 @@ export const FoodDeliveryForm = () => {
                             type="email"
                             className="form-control"
                             placeholder="Email"
-                            {...register('email')}
+                            {...register('email',{
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                                    message: 'Invalid email address'
+                                }
+                            })}
                         />
                         <label>Email</label>
                     </div>
