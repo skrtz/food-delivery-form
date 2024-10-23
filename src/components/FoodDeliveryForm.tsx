@@ -11,13 +11,16 @@ type FoodDeliveryFormType = {
 const RenderCount = getRenderCount();
 
 export const FoodDeliveryForm = () => {
-    const { register, handleSubmit } = useForm<FoodDeliveryFormType>({
+    const { register, handleSubmit, formState: { errors } } = useForm<FoodDeliveryFormType>({
         defaultValues: {
             orderNumber: new Date().valueOf(),
             email: '',
             customerName: '',
             mobile: '',
-        }
+        },
+        mode: 'onSubmit',
+        reValidateMode: 'onSubmit',
+        shouldFocusError: true,
     });
 
     const onSubmit = (formData: FoodDeliveryFormType) => {
@@ -53,20 +56,21 @@ export const FoodDeliveryForm = () => {
                             {...register('mobile', {
                                 required: {
                                     value: true,
-                                    message: 'u suck'
+                                    message: 'Mobile is required'
                                 },
                                 minLength: {
                                     value: 10,
-                                    message: 'u suck'
+                                    message: 'Mobile number should be 10 digits'
                                 },
                                 maxLength: {
                                     value: 10,
-                                    message: 'u suck'
+                                    message: 'Mobile number should be 10 digits'
                                 }
                             })}
                         />
                         <label>Mobile</label>
                     </div>
+                    {errors.mobile?.message && <div className='error-feedback'>{errors.mobile?.message}</div>}
                 </div>
             </div>
             <div className="row mb-2">
@@ -77,11 +81,15 @@ export const FoodDeliveryForm = () => {
                             className="form-control"
                             placeholder="Customer Name"
                             {...register('customerName', {
-                                required: true
+                                required: {
+                                    value: true,
+                                    message: 'Customer name is required'
+                                }
                             })}
                         />
                         <label>Customer Name</label>
                     </div>
+                    {errors.mobile?.message && <div className='error-feedback'>{errors.customerName?.message}</div>}
                 </div>
                 <div className='col'>
                     <div className="form-floating">
@@ -89,7 +97,7 @@ export const FoodDeliveryForm = () => {
                             type="email"
                             className="form-control"
                             placeholder="Email"
-                            {...register('email',{
+                            {...register('email', {
                                 pattern: {
                                     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                                     message: 'Invalid email address'
@@ -98,6 +106,7 @@ export const FoodDeliveryForm = () => {
                         />
                         <label>Email</label>
                     </div>
+                    {errors.email?.message && <div className='error-feedback'>{errors.email?.message}</div>}
                 </div>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
