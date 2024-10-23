@@ -101,6 +101,18 @@ export const FoodDeliveryForm = () => {
                                 pattern: {
                                     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                                     message: 'Invalid email address'
+                                },
+                                validate: {
+                                    checkEmail: (value) => {
+                                        return value != 'email@email.com' || 'Email is blocked';
+                                    },
+                                    checkDomain: (value) => {
+                                        return (
+                                            (!value.endsWith('@xyz.com') &&
+                                                !value.endsWith('example.com')) ||
+                                            'Domain is not allowed'
+                                        );
+                                    }
                                 }
                             })}
                         />
