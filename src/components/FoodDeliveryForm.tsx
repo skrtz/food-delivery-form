@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form'
 
 type FoodDeliveryFormType = {
@@ -13,20 +12,14 @@ export const FoodDeliveryForm = () => {
         console.log('form data: ', formData);
     }
 
-    const onError = (errors: any) => {
-        console.error('validation errors: ', errors);
-    }
-
     return (
-        <form autoComplete='off' onSubmit={handleSubmit(onSubmit, onError)}>
+        <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
             <div className="form-floating mb-3">
                 <input
                     type="text"
                     className="form-control"
                     placeholder="Customer Name"
-                    {...register('customerName', { 
-                        required: 'Customer Name is required' 
-                    })}
+                    {...register('customerName')}
                 />
                 <label>Customer Name</label>
             </div>
@@ -35,9 +28,7 @@ export const FoodDeliveryForm = () => {
                     type="text"
                     className="form-control"
                     placeholder="Mobile"
-                    {...register('mobile', { 
-                        required: 'Mobile is required' 
-                    })}
+                    {...register('mobile')}
                 />
                 <label>Mobile</label>
             </div>
