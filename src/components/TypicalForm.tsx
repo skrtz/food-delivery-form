@@ -1,4 +1,5 @@
 import React from 'react'
+import { getRenderCount } from '../utils/getRenderCount';
 
 type FoodDeliveryFormType = {
     customerName: string,
@@ -10,7 +11,9 @@ type FoodDeliveryFormErrorType = {
     mobile: string,
 }
 
-export const FoodDeliveryForm = () => {
+const RenderCount = getRenderCount();
+
+export const TypicalForm = () => {
     const [values, setValues] = React.useState<FoodDeliveryFormType>({
         customerName: '',
         mobile: '',
@@ -63,6 +66,7 @@ export const FoodDeliveryForm = () => {
 
     return (
         <form autoComplete='off' onSubmit={onSubmit}>
+            <RenderCount />
             <div className="form-floating mb-3">
                 <input
                     type="text"

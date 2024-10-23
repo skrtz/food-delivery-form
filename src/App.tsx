@@ -1,5 +1,6 @@
 import './App.css'
 import { FoodDeliveryForm } from './components/FoodDeliveryForm'
+import { TypicalForm } from './components/TypicalForm'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
         <div className="mx-5">
           <div>
             <FoodDeliveryForm />
+            <TypicalForm />
           </div>
         </div>
       </div>
