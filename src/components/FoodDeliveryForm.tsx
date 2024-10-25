@@ -11,6 +11,12 @@ type FoodDeliveryFormType = {
     mobile: string,
     paymentMethod: string,
     deliveryTime: string,
+    address: {
+        streetAddress: string,
+        landmark: string,
+        city: string,
+        state: string,
+    },
 }
 
 const paymentOptions: SelectOptionType[] = [
@@ -38,6 +44,12 @@ export const FoodDeliveryForm = () => {
             mobile: '',
             paymentMethod: '',
             deliveryTime: '',
+            address: {
+                streetAddress: '',
+                landmark: '',
+                city: '',
+                state: '',
+            }
         },
         mode: 'onSubmit',
         reValidateMode: 'onSubmit',
@@ -55,6 +67,7 @@ export const FoodDeliveryForm = () => {
     return (
         <form autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit, onError)}>
             <RenderCount />
+
             <div className="row mb-2">
                 <div className="col">
                     <TextField
@@ -77,6 +90,7 @@ export const FoodDeliveryForm = () => {
                     />
                 </div>
             </div>
+
             <div className="row mb-2">
                 <div className='col'>
                     <TextField
@@ -106,7 +120,8 @@ export const FoodDeliveryForm = () => {
                     />
                 </div>
             </div>
-            <div>list of ordered food items</div>
+
+            <div className="text-start fw-bold mt-4 mb-2">Checkout Details</div>
             <div className="row mb-2">
                 <div className="col">
                     <Select
@@ -120,6 +135,52 @@ export const FoodDeliveryForm = () => {
                         label='Delivery Time'
                         {...register('deliveryTime')}
                         options={deliveryTimeOptions}
+                    />
+                </div>
+            </div>
+
+            <div className="text-start fw-bold mt-4 mb-2">Delivery Address</div>
+            <div className="row mb-2">
+                <div className="col">
+                    <TextField
+                        label='Street Address'
+                        placeholder='Street Address'
+                        {...register('address.streetAddress', {
+                            required: {
+                                value: true,
+                                message: 'Street address is required'
+                            }
+                        })}
+                        error={errors.address?.streetAddress}
+                    />
+                </div>
+                <div className="col">
+                    <TextField
+                        label='City'
+                        placeholder='City'
+                        {...register('address.city', {
+                            required: {
+                                value: true,
+                                message: 'City is required'
+                            }
+                        })}
+                        error={errors.address?.city}
+                    />
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col">
+                    <TextField
+                        label='Landmark'
+                        placeholder='Landmark'
+                        {...register('address.landmark')}
+                    />
+                </div>
+                <div className="col">
+                    <TextField
+                        label='State'
+                        placeholder='State'
+                        {...register('address.state')}
                     />
                 </div>
             </div>
