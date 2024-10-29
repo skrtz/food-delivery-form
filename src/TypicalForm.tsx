@@ -1,5 +1,5 @@
 import React from 'react'
-import { getRenderCount } from '../utils/getRenderCount';
+import { getRenderCount } from './utils/getRenderCount';
 
 type FoodDeliveryFormType = {
     customerName: string,
