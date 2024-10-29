@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
-import { Select } from "../controls/Select"
-import { FoodDeliveryFormType, SelectOptionType } from "../types";
+import { Select } from "../../../controls/Select"
+import { CheckoutFormType, SelectOptionType } from "../../../types";
 
 const paymentOptions: SelectOptionType[] = [
     { value: '', text: 'Select' },
@@ -17,7 +17,7 @@ const deliveryTimeOptions: SelectOptionType[] = [
 ];
 
 export const CheckoutForm = () => {
-    const { register, formState: { errors } } = useFormContext<FoodDeliveryFormType>();
+    const { register, formState: { errors } } = useFormContext<CheckoutFormType>();
 
     return (
         <>
