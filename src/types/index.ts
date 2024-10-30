@@ -3,8 +3,8 @@ export type SelectOptionType = string |
 { value: number, text: string }
 
 export type CheckoutFormType = {
-    paymentMethod: SelectOptionType,
-    deliveryTime: SelectOptionType
+    paymentMethod: string,
+    deliveryTime: number,
 }
 
 export type DeliveryAddressFormType = {

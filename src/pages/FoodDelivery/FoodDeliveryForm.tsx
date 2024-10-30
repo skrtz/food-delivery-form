@@ -7,13 +7,15 @@ import { FoodDeliveryMaster } from './components/FoodDeliveryMaster';
 
 const RenderCount = getRenderCount();
 
-export const FoodDeliveryForm = () => {    
+export const FoodDeliveryForm = () => {
     const methods: UseFormReturn<FoodDeliveryFormType> = useForm<FoodDeliveryFormType>({
         defaultValues: {
             orderNumber: new Date().valueOf(),
-            email: '',
             customerName: '',
+            email: '',
             mobile: '',
+            paymentMethod: '',
+            deliveryTime: 0,
             address: {
                 streetAddress: '',
                 landmark: '',
@@ -21,12 +23,19 @@ export const FoodDeliveryForm = () => {
                 state: '',
             }
         },
-        mode: 'onSubmit',
+        mode: 'onChange',
         reValidateMode: 'onSubmit',
         shouldFocusError: true,
     });
 
-    const { handleSubmit } = methods;
+    const {
+        handleSubmit,
+        formState: {
+            isDirty,
+        },
+    } = methods;
+
+    console.log('isDirty: ', isDirty);
 
     const onSubmit = (formData: FoodDeliveryFormType) => {
         console.log('form data: ', formData);
@@ -43,7 +52,7 @@ export const FoodDeliveryForm = () => {
                 <FoodDeliveryMaster />
                 <CheckoutForm />
                 <DeliveryAddressForm />
-            </FormProvider>          
+            </FormProvider>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
     )
