@@ -27,10 +27,7 @@ export const CheckoutForm = () => {
                     <Select
                         label='Payment Method'
                         {...register('paymentMethod', {
-                            required: {
-                                value: true,
-                                message: 'Payment method is required'
-                            }
+                            required: 'Payment method is required'
                         })}
                         options={paymentOptions}
                         error={errors.paymentMethod}
@@ -39,12 +36,7 @@ export const CheckoutForm = () => {
                 <div className="col">
                     <Select
                         label='Delivery Time'
-                        {...register('deliveryTime', {
-                            required: {
-                                value: true,
-                                message: 'Delivery time is required'
-                            }
-                        })}
+                        {...register('deliveryTime')}
                         options={deliveryTimeOptions}
                         error={errors.deliveryTime}
                     />
