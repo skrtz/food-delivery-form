@@ -27,20 +27,24 @@ export const FoodDeliveryForm = () => {
         reValidateMode: 'onSubmit',
         shouldFocusError: true,
     });
-
     const {
         handleSubmit,
         formState: {
-            isDirty,
+            isSubmitted,
+            isSubmitSuccessful,
+            isSubmitting,
+            submitCount
         },
     } = methods;
 
-    console.log('isDirty: ', isDirty);
+    console.log('isSubmitting: ', isSubmitting);
+    console.log('isSubmitted: ', isSubmitted);
+    console.log('isSubmitSuccessful: ', isSubmitSuccessful);
+    console.log('submitCount: ', submitCount);
 
     const onSubmit = (formData: FoodDeliveryFormType) => {
         console.log('form data: ', formData);
     }
-
     const onError = (err: FieldErrors) => {
         console.log('error: ', err);
     }
