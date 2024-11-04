@@ -4,6 +4,7 @@ import { FoodDeliveryFormType } from '../../types';
 import { CheckoutForm } from './components/CheckoutForm';
 import { DeliveryAddressForm } from './components/DeliveryAddressForm';
 import { FoodDeliveryMaster } from './components/FoodDeliveryMaster';
+import { SubmitButton } from '../../controls/SubmitButton';
 
 const RenderCount = getRenderCount();
 
@@ -27,20 +28,25 @@ export const FoodDeliveryForm = () => {
         reValidateMode: 'onSubmit',
         shouldFocusError: true,
     });
-
     const {
         handleSubmit,
         formState: {
-            isDirty,
+            isSubmitting,
+            // isSubmitted,
+            // isSubmitSuccessful,
+            submitCount
         },
     } = methods;
 
-    console.log('isDirty: ', isDirty);
+    // console.log('isSubmitting: ', isSubmitting);
+    // console.log('isSubmitted: ', isSubmitted);
+    // console.log('isSubmitSuccessful: ', isSubmitSuccessful);
+    console.log('submitCount: ', submitCount);
 
-    const onSubmit = (formData: FoodDeliveryFormType) => {
+    const onSubmit = async (formData: FoodDeliveryFormType) => {
+        await new Promise((resolve) => setTimeout(resolve, 3000))
         console.log('form data: ', formData);
     }
-
     const onError = (err: FieldErrors) => {
         console.log('error: ', err);
     }
@@ -48,12 +54,16 @@ export const FoodDeliveryForm = () => {
     return (
         <form autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit, onError)}>
             <RenderCount />
+            <span>submit count {submitCount}</span>
             <FormProvider {...methods}>
                 <FoodDeliveryMaster />
                 <CheckoutForm />
                 <DeliveryAddressForm />
             </FormProvider>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <SubmitButton 
+                value="Submit"
+                isSubmitting={isSubmitting}
+            />
         </form>
     )
 }
