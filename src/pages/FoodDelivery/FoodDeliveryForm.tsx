@@ -32,15 +32,10 @@ export const FoodDeliveryForm = () => {
         handleSubmit,
         formState: {
             isSubmitting,
-            // isSubmitted,
-            // isSubmitSuccessful,
             submitCount
         },
     } = methods;
 
-    // console.log('isSubmitting: ', isSubmitting);
-    // console.log('isSubmitted: ', isSubmitted);
-    // console.log('isSubmitSuccessful: ', isSubmitSuccessful);
     console.log('submitCount: ', submitCount);
 
     const onSubmit = async (formData: FoodDeliveryFormType) => {
@@ -54,7 +49,6 @@ export const FoodDeliveryForm = () => {
     return (
         <form autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit, onError)}>
             <RenderCount />
-            <span>submit count {submitCount}</span>
             <FormProvider {...methods}>
                 <FoodDeliveryMaster />
                 <CheckoutForm />
