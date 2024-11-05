@@ -32,15 +32,10 @@ export const FoodDeliveryForm = () => {
         handleSubmit,
         formState: {
             isSubmitting,
-            // isSubmitted,
-            // isSubmitSuccessful,
             submitCount
         },
     } = methods;
 
-    // console.log('isSubmitting: ', isSubmitting);
-    // console.log('isSubmitted: ', isSubmitted);
-    // console.log('isSubmitSuccessful: ', isSubmitSuccessful);
     console.log('submitCount: ', submitCount);
 
     const onSubmit = async (formData: FoodDeliveryFormType) => {
