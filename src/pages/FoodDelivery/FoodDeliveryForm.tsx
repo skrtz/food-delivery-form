@@ -49,7 +49,6 @@ export const FoodDeliveryForm = () => {
     return (
         <form autoComplete='off' noValidate onSubmit={handleSubmit(onSubmit, onError)}>
             <RenderCount />
-            <span>submit count {submitCount}</span>
             <FormProvider {...methods}>
                 <FoodDeliveryMaster />
                 <CheckoutForm />
